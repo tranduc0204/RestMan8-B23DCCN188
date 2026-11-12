@@ -16,7 +16,7 @@ public class AddCustomerServlet8 extends HttpServlet {
 
     private CustomerDAO8 customerDAO = new CustomerDAO8();
 
-    // GET: bấm "Thêm khách hàng mới" cạnh nút tìm khách hàng (ngoại lệ 7.3) -> mở form thêm khách
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,7 +45,7 @@ public class AddCustomerServlet8 extends HttpServlet {
         String dateOfBirth = request.getParameter("dateOfBirth");
         String address = request.getParameter("address");
 
-        // ===== Kiểm tra thông tin =====
+       
         if (name == null || name.trim().isEmpty() || phoneNumber == null || phoneNumber.trim().isEmpty()) {
             request.setAttribute("errorMessage", "Vui lòng nhập họ tên và số điện thoại.");
             request.getRequestDispatcher(view).forward(request, response);
@@ -57,7 +57,7 @@ public class AddCustomerServlet8 extends HttpServlet {
             return;
         }
 
-        // ===== Đóng gói thông tin khách hàng mới (ô bỏ trống thì lưu NULL) =====
+     
         Customer8 customer = new Customer8();
         customer.setName(name.trim());
         customer.setPhoneNumber(phoneNumber.trim());
@@ -73,9 +73,6 @@ public class AddCustomerServlet8 extends HttpServlet {
             }
         }
 
-        // ===== Lưu khách hàng =====
-        // Cột phoneNumber trong CSDL là UNIQUE nên số điện thoại đã có người dùng
-        // thì addCustomer() trả về null -> nhánh [lưu lỗi] (ngoại lệ 7.3.1)
         Customer8 saved = customerDAO.addCustomer(customer);
         if (saved == null) {
             request.setAttribute("errorMessage", "Thêm khách hàng không thành công: số điện thoại này đã được đăng kí cho một khách hàng khác.");
@@ -83,7 +80,6 @@ public class AddCustomerServlet8 extends HttpServlet {
             return;
         }
 
-        // ===== Lưu xong: quay lại trang đặt bàn với khách hàng vừa thêm =====
         session.setAttribute("customer", saved);
         response.sendRedirect("BookTableServlet8");
     }

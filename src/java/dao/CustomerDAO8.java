@@ -11,7 +11,6 @@ public class CustomerDAO8 extends DAO8 {
         super();
     }
 
-    // Tìm khách hàng theo số điện thoại, không thấy trả về null
     public Customer8 getCustomerByPhone(String phoneNumber) {
         String sql = "SELECT * FROM tblCustomer8 WHERE phoneNumber = ?";
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -33,7 +32,6 @@ public class CustomerDAO8 extends DAO8 {
         return null;
     }
 
-    // Lưu khách hàng mới, trả về khách hàng đã có id; trùng số điện thoại trả về null
     public Customer8 addCustomer(Customer8 customer) {
         String sql = "INSERT INTO tblCustomer8 (name, phoneNumber, email, dateOfBirth, address) "
                 + "VALUES (?, ?, ?, ?, ?)";

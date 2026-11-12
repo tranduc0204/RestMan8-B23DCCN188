@@ -21,8 +21,7 @@ public class SearchTableServlet8 extends HttpServlet {
     private TimeSlotDAO8 timeSlotDAO = new TimeSlotDAO8();
     private TableDAO8 tableDAO = new TableDAO8();
 
-    // GET: bấm "Đặt bàn trực tuyến" ở CustomerHomeView8.jsp
-    // Lấy danh sách khung giờ rồi mở trang tìm bàn
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,8 +38,7 @@ public class SearchTableServlet8 extends HttpServlet {
         request.getRequestDispatcher("/view/customer/SearchTableView8.jsp").forward(request, response);
     }
 
-    // POST: bấm nút "Tìm bàn trống" ở SearchTableView8.jsp
-    // Kiểm tra ngày và khung giờ -> lấy danh sách bàn còn trống -> hiển thị
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

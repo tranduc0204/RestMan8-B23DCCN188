@@ -13,7 +13,6 @@ public class TableDAO8 extends DAO8 {
         super();
     }
 
-    // Lấy các bàn đang sử dụng và chưa có phiếu đặt bàn đang hiệu lực trong ngày và khung giờ đã chọn
     public Table8[] getAvailableTableList(Date reservationDate, int timeSlotId) {
         String sql = "SELECT * FROM tblTable8 t WHERE t.tableStatus = 'Đang sử dụng' "
                 + "AND t.id NOT IN (SELECT r.tblTable8id FROM tblReservation8 r "

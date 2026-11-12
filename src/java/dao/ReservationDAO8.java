@@ -12,7 +12,6 @@ public class ReservationDAO8 extends DAO8 {
         super();
     }
 
-    // Bàn còn trống khi chưa có phiếu đặt bàn đang hiệu lực trong ngày và khung giờ đó
     public boolean checkTableAvailable(int tableId, Date reservationDate, int timeSlotId) {
         String sql = "SELECT COUNT(*) FROM tblReservation8 WHERE tblTable8id = ? "
                 + "AND reservationDate = ? AND tblTimeSlot8id = ? "
@@ -31,7 +30,6 @@ public class ReservationDAO8 extends DAO8 {
         return false;
     }
 
-    // Lưu phiếu đặt bàn ở trạng thái chờ xác nhận, trả về phiếu đã có id
     public Reservation8 saveReservation(Reservation8 reservation) {
         String sql = "INSERT INTO tblReservation8 (reservationDate, note, status, "
                 + "tblTable8id, tblTimeSlot8id, tblCustomer8id, tblEmployee8id) "
