@@ -1,0 +1,605 @@
+/* =====================================================================
+   CSS dùng chung cho thư mục view/manager
+   Trang dùng: ManagerHomeView8.jsp, ManageDishView8.jsp, AddDishView8.jsp
+   ===================================================================== */
+
+/* MAU SAC */
+:root {
+    --nen-trang: #F2F1EC;          /* nền cả trang */
+    --nen-khung: #FFFFFF;          /* nền thanh trên cùng và các khung */
+    --nen-nhat: #FAF9F6;           /* nền tiêu đề bảng, ô xem trước ảnh */
+    --mau-chu: #1C1B19;            /* chữ chính */
+    --mau-chu-phu: #5E5B55;        /* chữ phụ, ghi chú */
+    --vien: #E2DFD8;               /* viền khung */
+    --vien-nhat: #EEECE6;          /* viền giữa các dòng bảng */
+    --vien-o-nhap: #D6D2C9;        /* viền ô nhập */
+    --mau-chinh: #1E5B4F;          /* màu xanh chủ đạo */
+    --mau-chinh-dam: #143F37;      /* màu xanh khi rê chuột */
+    --mau-chinh-nhat: #E3EDE9;     /* quầng sáng khi chọn ô nhập, nền ô tròn chữ cái */
+    --mau-loi: #A33A2A;            /* dấu * bắt buộc, nút xóa */
+    --mau-loi-nhat: #F8E9E6;       /* nền nút xóa khi rê chuột */
+    --mau-canh-bao-nhat: #FBF1E4;  /* nền biểu tượng cảnh báo */
+    --mau-canh-bao-chu: #6B4413;   /* màu dấu ! cảnh báo */
+}
+
+/* END MAU SAC */
+
+/* CHUNG */
+* {
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    background: var(--nen-trang);
+    color: var(--mau-chu);
+    font-family: 'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+:focus-visible {
+    outline: 3px solid #7FB3A6;
+    outline-offset: 2px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+h2 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+/* END CHUNG */
+
+/* HEADER */
+/* Thanh trên cùng: logo bên trái, nhân viên bên phải */
+.thanh-tren {
+    background: var(--nen-khung);
+    border-bottom: 1px solid var(--vien);
+}
+
+.thanh-tren-ben-trong {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* Logo: bấm để về trang chọn vai trò */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--mau-chu);
+}
+
+.logo-bieu-tuong {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--mau-chinh);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.logo-ten {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+}
+
+/* Tên, vai trò và ô tròn chữ cái đầu tên của nhân viên */
+.nguoi-dung {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.nguoi-dung-chu {
+    text-align: right;
+}
+
+.nguoi-dung-ten {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.nguoi-dung-vai-tro {
+    font-size: 13px;
+    color: var(--mau-chu-phu);
+}
+
+.anh-dai-dien {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--mau-chinh-nhat);
+    color: var(--mau-chinh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* END HEADER */
+
+/* BO CUC TRANG */
+.trang {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 28px 28px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* Khung trắng bo góc */
+.khung {
+    background: var(--nen-khung);
+    border: 1px solid var(--vien);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.cach-tren {
+    margin-top: 22px;
+}
+
+.ghi-chu-nho {
+    font-size: 14px;
+    color: var(--mau-chu-phu);
+}
+
+/* END BO CUC TRANG */
+
+/* TRANG CHU QUAN LI (ManagerHomeView8) */
+/* Tiêu đề và một nút, căn giữa */
+.trang-chu-noi-dung {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    text-align: center;
+}
+
+.nut-trang-chu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 260px;
+    min-height: 56px;
+    padding: 0 20px;
+    border-radius: 10px;
+    background: var(--mau-chinh);
+    color: #fff;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.nut-trang-chu:hover {
+    background: var(--mau-chinh-dam);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(30, 91, 79, 0.25);
+}
+
+/* END TRANG CHU QUAN LI */
+
+/* QUAN LI MON AN (ManageDishView8) */
+/* Ba ô chức năng: Thêm / Sửa / Xóa món ăn */
+.danh-sach-o {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.o-chuc-nang {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 22px;
+    border-radius: 12px;
+    background: var(--nen-khung);
+    border: 1px solid var(--vien);
+    text-decoration: none;
+    color: var(--mau-chu);
+}
+
+.o-chuc-nang:hover {
+    border-color: var(--mau-chinh);
+}
+
+.o-chuc-nang-ten {
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.o-chuc-nang-mo-ta {
+    font-size: 14px;
+    color: var(--mau-chu-phu);
+}
+
+/* Ô mờ, không bấm được (sửa, xóa món ngoài phạm vi bài) */
+.bi-khoa {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.bi-khoa:hover {
+    border-color: var(--vien);
+}
+
+/* END QUAN LI MON AN */
+
+/* THEM MON AN (AddDishView8) */
+/* Chia 2 cột: thông tin món ăn bên trái (rộng), hình ảnh bên phải (hẹp) */
+.chia-cot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    align-items: stretch;
+}
+
+.cot-chinh {
+    flex: 2 1 480px;
+    min-width: 0;
+}
+
+.cot-phu {
+    flex: 1 1 260px;
+    min-width: 0;
+}
+
+/* Ô xem trước hình ảnh */
+.xem-truoc-anh {
+    flex-grow: 1;
+    min-height: 190px;
+    border: 1.5px dashed #C9C4B9;
+    border-radius: 10px;
+    background: var(--nen-nhat);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--mau-chu-phu);
+    overflow: hidden;
+}
+
+.xem-truoc-anh img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Ẩn ô chọn file gốc của trình duyệt, dùng nút "Chọn hình ảnh" thay thế */
+.an-di {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+/* END THEM MON AN */
+
+/* O NHAP */
+/* Hàng chứa nhiều ô nhập nằm ngang */
+.hang {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.o-nhap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1 1 220px;
+    min-width: 0;
+}
+
+/* Ô nhập xếp dọc trong khung thì không giãn chiều cao */
+.khung > .o-nhap {
+    flex: 0 0 auto;
+}
+
+.o-nhap label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Dấu * đỏ của trường bắt buộc */
+.bat-buoc {
+    color: var(--mau-loi);
+}
+
+input[type=text],
+select,
+textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 12px;
+    border: 1px solid var(--vien-o-nhap);
+    border-radius: 8px;
+    font: inherit;
+    color: var(--mau-chu);
+    background: #fff;
+}
+
+textarea {
+    padding: 10px 12px;
+    resize: vertical;
+    min-height: 96px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--mau-chinh);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--mau-chinh-nhat);
+}
+
+/* Ô đơn giá có chữ "VNĐ" ở cuối */
+.o-don-vi {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--vien-o-nhap);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.o-don-vi input {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none !important;
+}
+
+.o-don-vi span {
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    background: var(--nen-nhat);
+    border-left: 1px solid var(--vien);
+    color: var(--mau-chu-phu);
+    font-size: 14px;
+}
+
+.o-don-vi:focus-within {
+    border-color: var(--mau-chinh);
+    box-shadow: 0 0 0 3px var(--mau-chinh-nhat);
+}
+
+/* END O NHAP */
+
+/* NUT */
+/* Nút trắng viền xám (ví dụ: Hủy, Chọn hình ảnh) */
+.nut {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 20px;
+    border-radius: 8px;
+    border: 1px solid var(--vien-o-nhap);
+    background: #fff;
+    color: var(--mau-chu);
+    font: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nut:hover {
+    border-color: #BDB8AD;
+}
+
+/* Nút xanh chính (ví dụ: Thêm món ăn, OK) */
+.nut-chinh {
+    background: var(--mau-chinh);
+    border-color: var(--mau-chinh);
+    color: #fff;
+    font-weight: 600;
+}
+
+.nut-chinh:hover {
+    background: var(--mau-chinh-dam);
+    border-color: var(--mau-chinh-dam);
+}
+
+/* Nút viền xanh (ví dụ: Thêm kích cỡ) */
+.nut-vien {
+    border-color: var(--mau-chinh);
+    color: var(--mau-chinh);
+    font-weight: 600;
+}
+
+.nut-vien:hover {
+    background: var(--mau-chinh-nhat);
+    border-color: var(--mau-chinh);
+}
+
+/* Nút ✕ đỏ để xóa một dòng kích cỡ */
+.nut-xoa {
+    width: 36px;
+    min-height: 36px;
+    padding: 0;
+    border-color: #E8D3CF;
+    color: var(--mau-loi);
+}
+
+.nut-xoa:hover {
+    background: var(--mau-loi-nhat);
+    border-color: #E8D3CF;
+}
+
+/* Nhóm nút nằm bên phải */
+.nhom-nut {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* END NUT */
+
+/* BANG */
+.khung-bang {
+    overflow-x: auto;
+    border: 1px solid var(--vien);
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    min-width: 520px;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th {
+    background: var(--nen-nhat);
+    text-align: left;
+    font-weight: 600;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--vien);
+}
+
+td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--vien-nhat);
+}
+
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* Cột số (đơn giá) căn phải */
+.cot-so {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.can-giua {
+    text-align: center;
+}
+
+/* END BANG */
+
+/* POPUP THONG BAO */
+/* Lớp nền mờ phủ cả màn hình */
+.lop-phu {
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 27, 25, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 10;
+}
+
+/* Hộp thông báo màu trắng ở giữa */
+.hop-thoai {
+    width: 100%;
+    max-width: 440px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
+}
+
+.hop-thoai h2 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.hop-thoai p {
+    margin: 0;
+    color: var(--mau-chu-phu);
+    font-size: 14px;
+}
+
+.hop-thoai-nut {
+    display: flex;
+    justify-content: center;
+}
+
+/* Vòng tròn có dấu ✓ (thành công) hoặc dấu ! (cảnh báo) */
+.bieu-tuong-thanh-cong,
+.bieu-tuong-canh-bao {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.bieu-tuong-thanh-cong {
+    background: var(--mau-chinh-nhat);
+    color: var(--mau-chinh);
+}
+
+.bieu-tuong-canh-bao {
+    background: var(--mau-canh-bao-nhat);
+    color: var(--mau-canh-bao-chu);
+}
+
+/* END POPUP THONG BAO */
+
+/* RESPONSIVE */
+/* Màn hình điện thoại */
+@media (max-width: 600px) {
+    .trang,
+    .thanh-tren-ben-trong {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .nguoi-dung-chu {
+        display: none;
+    }
+}
+
+/* END RESPONSIVE */

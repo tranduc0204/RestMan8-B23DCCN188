@@ -1,0 +1,442 @@
+/* =====================================================================
+   CSS dùng chung cho thư mục view/customer
+   Trang dùng: CustomerHomeView8.jsp, SearchTableView8.jsp,
+               BookTableView8.jsp, AddCustomerView8.jsp
+   ===================================================================== */
+
+/* MAU SAC */
+:root {
+    --nen-trang: #F2F1EC;          /* nền cả trang */
+    --nen-khung: #FFFFFF;          /* nền thanh trên cùng và các khung */
+    --nen-nhat: #FAF9F6;           /* nền tiêu đề bảng */
+    --nen-chi-doc: #F3F2EE;        /* nền xám của ô chỉ đọc */
+    --mau-chu: #1C1B19;            /* chữ chính */
+    --mau-chu-phu: #5E5B55;        /* chữ phụ */
+    --vien: #E2DFD8;               /* viền khung */
+    --vien-nhat: #EEECE6;          /* viền giữa các dòng bảng */
+    --vien-o-nhap: #D6D2C9;        /* viền ô nhập */
+    --mau-chinh: #1E5B4F;          /* màu xanh chủ đạo */
+    --mau-chinh-dam: #143F37;      /* màu xanh khi rê chuột */
+    --mau-chinh-nhat: #E3EDE9;     /* quầng sáng khi chọn ô nhập */
+    --mau-loi: #A33A2A;            /* dấu * bắt buộc */
+    --mau-canh-bao-nhat: #FBF1E4;  /* nền biểu tượng cảnh báo */
+    --mau-canh-bao-chu: #6B4413;   /* màu dấu ! cảnh báo */
+}
+
+/* END MAU SAC */
+
+/* CHUNG */
+* {
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    background: var(--nen-trang);
+    color: var(--mau-chu);
+    font-family: 'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+:focus-visible {
+    outline: 3px solid #7FB3A6;
+    outline-offset: 2px;
+}
+
+/* Tiêu đề trang căn giữa */
+h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-align: center;
+}
+
+h2 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+/* END CHUNG */
+
+/* HEADER */
+/* Thanh trên cùng: chỉ có logo */
+.thanh-tren {
+    background: var(--nen-khung);
+    border-bottom: 1px solid var(--vien);
+}
+
+.thanh-tren-ben-trong {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+}
+
+/* Logo: bấm để về trang chọn vai trò */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--mau-chu);
+}
+
+.logo-bieu-tuong {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--mau-chinh);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.logo-ten {
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+}
+
+/* END HEADER */
+
+/* BO CUC TRANG */
+.trang {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 28px 28px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* Trang hẹp hơn, chỉ có một form (AddCustomerView8) */
+.trang-hep {
+    max-width: 720px;
+}
+
+/* Khung trắng bo góc */
+.khung {
+    background: var(--nen-khung);
+    border: 1px solid var(--vien);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* END BO CUC TRANG */
+
+/* TRANG CHU KHACH HANG (CustomerHomeView8) */
+/* Tiêu đề và một nút, căn giữa */
+.trang-chu-noi-dung {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    text-align: center;
+}
+
+.nut-trang-chu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 260px;
+    min-height: 56px;
+    padding: 0 20px;
+    border-radius: 10px;
+    background: var(--mau-chinh);
+    color: #fff;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.nut-trang-chu:hover {
+    background: var(--mau-chinh-dam);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(30, 91, 79, 0.25);
+}
+
+/* END TRANG CHU KHACH HANG */
+
+/* O NHAP */
+/* Hàng chứa nhiều ô nhập nằm ngang */
+.hang {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.o-nhap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1 1 220px;
+    min-width: 0;
+}
+
+/* Ô nhập xếp dọc trong khung thì không giãn chiều cao */
+.khung > .o-nhap {
+    flex: 0 0 auto;
+}
+
+.o-nhap label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Dấu * đỏ của trường bắt buộc */
+.bat-buoc {
+    color: var(--mau-loi);
+}
+
+input[type=text],
+input[type=tel],
+input[type=email],
+input[type=date],
+select,
+textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 12px;
+    border: 1px solid var(--vien-o-nhap);
+    border-radius: 8px;
+    font: inherit;
+    color: var(--mau-chu);
+    background: #fff;
+}
+
+textarea {
+    padding: 10px 12px;
+    resize: vertical;
+    min-height: 96px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--mau-chinh);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--mau-chinh-nhat);
+}
+
+/* Ô xám chỉ đọc: thông tin khách hàng tìm được (BookTableView8) */
+input[readonly] {
+    background: var(--nen-chi-doc);
+    color: var(--mau-chu-phu);
+    border-color: var(--vien);
+    cursor: default;
+}
+
+input[readonly]:focus {
+    border-color: var(--vien);
+    box-shadow: none;
+}
+
+/* END O NHAP */
+
+/* NUT */
+/* Nút trắng viền xám (ví dụ: Hủy) */
+.nut {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 20px;
+    border-radius: 8px;
+    border: 1px solid var(--vien-o-nhap);
+    background: #fff;
+    color: var(--mau-chu);
+    font: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nut:hover {
+    border-color: #BDB8AD;
+}
+
+/* Nút xanh chính (ví dụ: Tìm bàn trống, Xác nhận đặt bàn, OK) */
+.nut-chinh {
+    background: var(--mau-chinh);
+    border-color: var(--mau-chinh);
+    color: #fff;
+    font-weight: 600;
+}
+
+.nut-chinh:hover {
+    background: var(--mau-chinh-dam);
+    border-color: var(--mau-chinh-dam);
+}
+
+/* Nút viền xanh (ví dụ: Chọn bàn, Thêm khách hàng mới) */
+.nut-vien {
+    border-color: var(--mau-chinh);
+    color: var(--mau-chinh);
+    font-weight: 600;
+}
+
+.nut-vien:hover {
+    background: var(--mau-chinh-nhat);
+    border-color: var(--mau-chinh);
+}
+
+/* Nút nhỏ trong bảng */
+.nut-nho {
+    min-height: 34px;
+    padding: 0 16px;
+    font-size: 14px;
+}
+
+/* Nhóm nút nằm bên phải */
+.nhom-nut {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* Nhóm nút nằm giữa (Hủy / Xác nhận đặt bàn) */
+.nhom-nut-giua {
+    justify-content: center;
+}
+
+/* END NUT */
+
+/* BANG */
+.khung-bang {
+    overflow-x: auto;
+    border: 1px solid var(--vien);
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    min-width: 520px;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th {
+    background: var(--nen-nhat);
+    text-align: left;
+    font-weight: 600;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--vien);
+}
+
+td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--vien-nhat);
+}
+
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.can-giua {
+    text-align: center;
+}
+
+/* END BANG */
+
+/* POPUP THONG BAO */
+/* Lớp nền mờ phủ cả màn hình */
+.lop-phu {
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 27, 25, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 10;
+}
+
+/* Hộp thông báo màu trắng ở giữa */
+.hop-thoai {
+    width: 100%;
+    max-width: 440px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
+}
+
+.hop-thoai h2 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.hop-thoai p {
+    margin: 0;
+    color: var(--mau-chu-phu);
+    font-size: 14px;
+}
+
+.hop-thoai-nut {
+    display: flex;
+    justify-content: center;
+}
+
+/* Vòng tròn có dấu ✓ (thành công) hoặc dấu ! (cảnh báo) */
+.bieu-tuong-thanh-cong,
+.bieu-tuong-canh-bao {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.bieu-tuong-thanh-cong {
+    background: var(--mau-chinh-nhat);
+    color: var(--mau-chinh);
+}
+
+.bieu-tuong-canh-bao {
+    background: var(--mau-canh-bao-nhat);
+    color: var(--mau-canh-bao-chu);
+}
+
+/* END POPUP THONG BAO */
+
+/* RESPONSIVE */
+/* Màn hình điện thoại */
+@media (max-width: 600px) {
+    .trang,
+    .thanh-tren-ben-trong {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+
+/* END RESPONSIVE */

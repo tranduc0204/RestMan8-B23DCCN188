@@ -1,0 +1,4 @@
+# File mẫu tài khoản MySQL.
+# Cách dùng: chép file này thành db.properties (cùng thư mục src/java/dao) rồi điền mật khẩu MySQL của máy.
+user=root
+password=your_password
