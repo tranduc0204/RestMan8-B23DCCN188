@@ -12,7 +12,6 @@ public class DishCategoryDAO8 extends DAO8 {
         super();
     }
 
-    // Lấy các loại món ăn đang ở trạng thái sử dụng
     public DishCategory8[] getCategoryList() {
         String sql = "SELECT * FROM tblDishCategory8 WHERE status = 'Đang sử dụng' ORDER BY id";
         List<DishCategory8> list = new ArrayList<>();

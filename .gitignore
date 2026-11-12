@@ -4,6 +4,7 @@
 
 # Cấu hình riêng của máy (đường dẫn Tomcat, JDK trên máy sinh viên)
 /nbproject/private/
+/.vscode/
 
 # Tài khoản MySQL trên máy sinh viên (chỉ đưa lên file mẫu db.properties.example)
 /src/java/dao/db.properties

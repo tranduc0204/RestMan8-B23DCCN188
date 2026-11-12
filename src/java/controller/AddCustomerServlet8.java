@@ -16,7 +16,7 @@ public class AddCustomerServlet8 extends HttpServlet {
 
     private CustomerDAO8 customerDAO = new CustomerDAO8();
 
-    // GET: bấm nút "Thêm khách hàng mới" cạnh nút tìm khách hàng (ngoại lệ 7.3)
+    // GET: bấm "Thêm khách hàng mới" cạnh nút tìm khách hàng (ngoại lệ 7.3) -> mở form thêm khách
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class AddCustomerServlet8 extends HttpServlet {
         request.getRequestDispatcher("/view/customer/AddCustomerView8.jsp").forward(request, response);
     }
 
-    // POST: bấm nút "Thêm khách hàng"
+    // POST: bấm nút "Thêm khách hàng" -> kiểm tra -> lưu khách hàng -> quay lại trang đặt bàn
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,6 +37,7 @@ public class AddCustomerServlet8 extends HttpServlet {
             response.sendRedirect("SearchTableServlet8");
             return;
         }
+        String view = "/view/customer/AddCustomerView8.jsp";
 
         String name = request.getParameter("name");
         String phoneNumber = request.getParameter("phoneNumber");
@@ -44,53 +45,46 @@ public class AddCustomerServlet8 extends HttpServlet {
         String dateOfBirth = request.getParameter("dateOfBirth");
         String address = request.getParameter("address");
 
+        // ===== Kiểm tra thông tin =====
         if (name == null || name.trim().isEmpty() || phoneNumber == null || phoneNumber.trim().isEmpty()) {
-            backWithError(request, response, "Vui lòng nhập họ tên và số điện thoại.");
+            request.setAttribute("errorMessage", "Vui lòng nhập họ tên và số điện thoại.");
+            request.getRequestDispatcher(view).forward(request, response);
             return;
         }
         if (!phoneNumber.trim().matches("0\\d{9}")) {
-            backWithError(request, response, "Số điện thoại không đúng định dạng (10 chữ số, bắt đầu bằng 0).");
-            return;
-        }
-        // Ngoại lệ 7.3.1: số điện thoại đã có khách hàng dùng
-        if (customerDAO.getCustomerByPhone(phoneNumber.trim()) != null) {
-            backWithError(request, response, "Số điện thoại này đã được đăng kí cho một khách hàng khác.");
+            request.setAttribute("errorMessage", "Số điện thoại không đúng định dạng (10 chữ số, bắt đầu bằng 0).");
+            request.getRequestDispatcher(view).forward(request, response);
             return;
         }
 
-        // Đóng gói thông tin khách hàng mới
+        // ===== Đóng gói thông tin khách hàng mới (ô bỏ trống thì lưu NULL) =====
         Customer8 customer = new Customer8();
         customer.setName(name.trim());
         customer.setPhoneNumber(phoneNumber.trim());
-        customer.setEmail(isBlank(email) ? null : email.trim());
-        customer.setAddress(isBlank(address) ? null : address.trim());
-        if (!isBlank(dateOfBirth)) {
+        customer.setEmail(email == null || email.trim().isEmpty() ? null : email.trim());
+        customer.setAddress(address == null || address.trim().isEmpty() ? null : address.trim());
+        if (dateOfBirth != null && !dateOfBirth.trim().isEmpty()) {
             try {
                 customer.setDateOfBirth(new SimpleDateFormat("yyyy-MM-dd").parse(dateOfBirth));
             } catch (Exception e) {
-                backWithError(request, response, "Ngày sinh không hợp lệ.");
+                request.setAttribute("errorMessage", "Ngày sinh không hợp lệ.");
+                request.getRequestDispatcher(view).forward(request, response);
                 return;
             }
         }
 
+        // ===== Lưu khách hàng =====
+        // Cột phoneNumber trong CSDL là UNIQUE nên số điện thoại đã có người dùng
+        // thì addCustomer() trả về null -> nhánh [lưu lỗi] (ngoại lệ 7.3.1)
         Customer8 saved = customerDAO.addCustomer(customer);
         if (saved == null) {
-            backWithError(request, response, "Thêm khách hàng không thành công, vui lòng thử lại.");
+            request.setAttribute("errorMessage", "Thêm khách hàng không thành công: số điện thoại này đã được đăng kí cho một khách hàng khác.");
+            request.getRequestDispatcher(view).forward(request, response);
             return;
         }
 
-        // Quay lại trang đặt bàn với khách hàng vừa thêm
+        // ===== Lưu xong: quay lại trang đặt bàn với khách hàng vừa thêm =====
         session.setAttribute("customer", saved);
         response.sendRedirect("BookTableServlet8");
-    }
-
-    private boolean isBlank(String s) {
-        return s == null || s.trim().isEmpty();
-    }
-
-    private void backWithError(HttpServletRequest request, HttpServletResponse response, String message)
-            throws ServletException, IOException {
-        request.setAttribute("errorMessage", message);
-        request.getRequestDispatcher("/view/customer/AddCustomerView8.jsp").forward(request, response);
     }
 }

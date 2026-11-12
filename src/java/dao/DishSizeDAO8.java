@@ -9,9 +9,6 @@ public class DishSizeDAO8 extends DAO8 {
         super();
     }
 
-    // Lưu danh sách kích cỡ kèm đơn giá của một món ăn, lưu một lượt.
-    // Chạy tiếp transaction do DishDAO8.addDish() mở: thành công thì commit cả món ăn lẫn kích cỡ,
-    // lỗi thì rollback cả hai.
     public boolean saveDishSizeList(DishSize8[] dishSizeList) {
         String sql = "INSERT INTO tblDishSize8 (unitPrice, servingStatus, tblDish8id, tblSize8id) "
                 + "VALUES (?, ?, ?, ?)";

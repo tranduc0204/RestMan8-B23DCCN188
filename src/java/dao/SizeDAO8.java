@@ -12,7 +12,6 @@ public class SizeDAO8 extends DAO8 {
         super();
     }
 
-    // Lấy các kích cỡ đang ở trạng thái sử dụng
     public Size8[] getSizeList() {
         String sql = "SELECT * FROM tblSize8 WHERE status = 'Đang sử dụng' ORDER BY id";
         List<Size8> list = new ArrayList<>();

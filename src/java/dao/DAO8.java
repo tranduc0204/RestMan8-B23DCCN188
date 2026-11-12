@@ -15,9 +15,6 @@ public abstract class DAO8 {
     public DAO8() {
         if (con == null) {
             try {
-                // Tài khoản MySQL đọc từ file db.properties nằm cùng thư mục dao (file này không đưa lên GitHub).
-                // Máy không có file đó thì dùng giá trị mặc định bên dưới:
-                // sửa "your_password" thành mật khẩu MySQL của máy là chạy được.
                 Properties config = new Properties();
                 try (InputStream in = DAO8.class.getResourceAsStream("db.properties")) {
                     if (in != null) {

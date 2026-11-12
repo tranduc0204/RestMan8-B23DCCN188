@@ -8,8 +8,8 @@
     String initials = employee.getName().trim().substring(employee.getName().trim().lastIndexOf(' ') + 1).substring(0, 1);
 
     // Mở thẳng trang mà chưa qua AddDishServlet8 thì chưa có danh sách, chuyển qua servlet để lấy
-    DishCategory8[] categoryList = (DishCategory8[]) request.getAttribute("categoryList");
-    Size8[] sizeList = (Size8[]) request.getAttribute("sizeList");
+    DishCategory8[] categoryList = (DishCategory8[]) session.getAttribute("categoryList");
+    Size8[] sizeList = (Size8[]) session.getAttribute("sizeList");
     if (categoryList == null || sizeList == null) { response.sendRedirect(request.getContextPath() + "/AddDishServlet8"); return; }
 
     String successMessage = (String) request.getAttribute("successMessage");
